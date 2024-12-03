@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Absensi</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Form Absensi</h1>
+        <form id="absensiForm">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" required>
+
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal" required>
+
+            <label for="status">Status:</label>
+            <select id="status" required>
+                <option value="Hadir">Hadir</option>
+                <option value="Sakit">Sakit</option>
+                <option value="Izin">Izin</option>
+            </select>
+
+            <button type="submit">Kirim</button>
+        </form>
+
+        <h2>Daftar Absensi</h2>
+        <table id="daftarAbsensi">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data absensi akan ditambahkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('absensiForm');
+        const daftarAbsensi = document.getElementById('daftarAbsensi').getElementsByTagName('tbody')[0];
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const status = document.getElementById('status').value;
+
+            const row = daftarAbsensi.insertRow();
+            row.insertCell(0).textContent = nama;
+            row.insertCell(1).textContent = tanggal;
+            row.insertCell(2).textContent = status;
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
